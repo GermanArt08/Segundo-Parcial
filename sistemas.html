@@ -38,6 +38,38 @@
                 <li>Arte en espacio público</li>
             </ul>
         </section>
+        <form id="ingresarDatos">
+        <div class="campos">
+            <p id="pedido">A continuación, se le pedirá ingresar datos para calcular los costos de Refik Anadol en un centro cultural de la ciudad durante todo el mes de agosto</p>
+            <legend>Ingresar con los datos solicitados</legend>
+            <label for="cantObras">Cantidad de obras a exponer:</label>
+            <input type="number" id="cantObras" name="cantObras">
+            <p id="infoCantidad"></p>
+            <fieldset id="resto" style="display:none">
+            <label for="nombre">Nombre de la obra:</label>
+            <input type="text" id="nombre" name="nombre">
+
+            <label for="cantLuz">Cantidad de luces utilizadas:</label>
+            <input type="number" id="cantLuz" name="cantLuz">
+
+            <label for="horas">Horas de funcionamiento por día:</label>
+            <input type="number" id="horas" name="horas">
+
+            <label for="consumo">Consumo de electricidad por hora:</label>
+            <input type="number" id="consumo" name="consumo">
+
+            <label for="costo">Costo por kWh:</label>
+            <input type="number" id="costo" name="costo">
+            </fieldset>
+
+            <button type="button" id="btnEnviar">Enviar</button>
+            <button type ="button" id="btnCalcular" style="display: none;">Calcular</button>
+            <button type="button" id="btnReset" style="display: none;">Reiniciar</button>
+        </div>
+    </form>
+    <ul class="listado">
+        
+    </ul>
     </main>
     <footer>
         <adrress>Para contactarse escribir a <a href="mailto:rafael@artedigital.com">rafael@artedigital.com</a>
