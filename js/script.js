@@ -69,4 +69,58 @@ function ingresarDatos() {
         alert("Ingrese un costo válido");
         return false;
     }
+
+    const obra = {
+        nombre: nombre,
+        cantLuz: Number(cantLuz),
+        horas: Number(horas),
+        consumo: Number(consumo),
+        costo: Number(costo),
+        }
+    obras.push(obra);
+    contadorObras++;
+    alert (`Obra ${contadorObras} de ${cantidadTotal} ingresada correctamente`);
+
+    vaciarFormulario();
+    //Si ya completó todas las obras
+    if (contadorObras>=cantidadTotal) {
+        btnEnviar.disabled = true;
+        btnCalcular.style.display = "inline-block";
+        btnReset.style.display = "inline-block"
+        resto.disabled = true;
+    }
+}
+function vaciarFormulario(){
+    document.querySelector ("#cantObras").value = "";
+    document.querySelector ("#nombre").value = "";
+    document.querySelector ("#cantLuz").value = "";
+    document.querySelector ("#horas").value = "";
+    document.querySelector ("#consumo").value = "";
+    document.querySelector ("#costo").value = "";
+}
+btnCalcular.addEventListener("click", function(e) {
+    e.preventDefault();
+    calcularResultado();
+})
+btnReiniciar.addEventListener("click", function(e) {
+    e.preventDefault();
+    vaciarFormulario();
+})
+
+function calcularResultado(){
+    let consumoTotal = 0;
+    let consumoPromedio = 0;
+
+    for(let i = 0; i <obras.length; i++) {
+        let obra = obras[i];
+
+    //Calculo obra que mas tiempo estuvo:
+    if(obras.length === 0) return;
+    let obraMasTiempo = obras[0];
+    //Suponemos que la primera es la que estuvo mas tiempo
+    for(let i= 0; i <obras.length; i++)
+        let obra = obras[i];
+
+    
+    }
 }
