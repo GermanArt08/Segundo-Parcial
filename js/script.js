@@ -13,7 +13,7 @@ const btnReiniciar = document.querySelector("#btnReset");
 btnEnviar.addEventListener("click", function(e) {
     e.preventDefault ();
     ingresarDatos ();
-})
+});
 
 //Declaro qué hace la función ingresarDatos
 
@@ -33,9 +33,9 @@ function ingresarDatos() {
 
         let fieldCant = document.querySelector("#fieldCant");
         if (fieldCant) {
-            fieldCant.textContent = `Cantidad de obras a exponer: ${cantidadTotal}`;
+            fieldCant.querySelector ("label").innerText = `Cantidad de obras a exponer: ${cantidadTotal}`;
         }
-        btnEnviar.textContent = "Agregar obra";
+        btnEnviar.innerText = "Agregar obra";
         vaciarFormulario();
         return;
     }
@@ -85,7 +85,7 @@ function ingresarDatos() {
         btnReiniciar.style.display = "inline-block"
         resto.disabled = true;
     }
-}
+};
 function vaciarFormulario(){
     document.querySelector ("#cantObras").value = "";
     document.querySelector ("#nombre").value = "";
@@ -110,7 +110,7 @@ btnReiniciar.addEventListener("click", function(e) {
     contadorObras = 0;
     
     btnEnviar.disabled = false;
-    btnEnviar.textContent = "Ingresar Cantidad";
+    btnEnviar.innerText = "Ingresar Cantidad";
 
     btnCalcular.style.display = "none";
     btnReiniciar.style.display = "none";
@@ -119,7 +119,7 @@ btnReiniciar.addEventListener("click", function(e) {
     cantObrasInput.style.display = "block";
     //hacer lo contrario al incio de funcion ingresarDatos
     resto.style.display = "none";
-    document.querySelector("#fieldCant").textContent = "";
+    document.querySelector("#fieldCant").innerText = "";
     listado.innerHTML = "";
 
     vaciarFormulario();
@@ -128,7 +128,7 @@ btnReiniciar.addEventListener("click", function(e) {
 
 function calcularResultado(){
     let consumoTotalDiario = 0;
-    let obraMasHoras = [0];
+    let obraMasHoras = [];
     let obrasMas20Luces = 0;
 
     for(let i = 0; i <obras.length; i++) {
