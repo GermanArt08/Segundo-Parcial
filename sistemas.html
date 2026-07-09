@@ -21,7 +21,7 @@
             </ul>
         </nav>
     </header>
-    <main>
+    <main id="main2">
         <section>
             <h3>Sistemas interactivos y tecnología en tiempo real</h3>
             <p>El trabajo de <span>Rafael Lozano-Hemmer</span> se basa en el desarrollo de sistemas tecnológicos que reaccionan a la presencia humana. Utiliza dispositivos como cámaras, micrófonos y sensores biométricos para captar información del entorno y transformarla en respuestas visuales o sonoras.
@@ -40,13 +40,12 @@
         </section>
         <form id="ingresarDatos">
         <div class="campos">
-            <p id="pedido">A continuación, se le pedirá ingresar datos para calcular los costos de Refik Anadol en un centro cultural de la ciudad durante todo el mes de agosto</p>
-            <legend>Ingresar con los datos solicitados</legend>
+            <h3>Ingresar con los datos solicitados</h3>
+            <p id="pedido">A continuación, se le pedirá ingresar datos para controlar el funcionamiento de las luces móviles de las obras de Rafael Lozano-Hemmer.</p>
+            <fieldset id="fieldCant">
             <label for="cantObras">Cantidad de obras a exponer:</label>
             <input type="number" id="cantObras" name="cantObras">
-
-            <p id="infoCantidad"></p>
-
+            </fieldset>
             <fieldset id="resto" style="display:none">
             <label for="nombre">Nombre de la obra:</label>
             <input type="text" id="nombre" name="nombre">
@@ -74,8 +73,8 @@
     </ul>
     </main>
     <footer>
-        <adrress>Para contactarse escribir a <a href="mailto:rafael@artedigital.com">rafael@artedigital.com</a>
-        </adrress>
+        <address>Para contactarse escribir a <a href="mailto:rafael@artedigital.com">rafael@artedigital.com</a>
+        </address>
     </footer>
     </div>
     <script src="js/script.js"></script>
