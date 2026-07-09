@@ -3,17 +3,13 @@ let obras = []; //Vacío, el usuario completa la cantidad
 let cantidadTotal = 0;
 let contadorObras = 0;
 let resto = document.querySelector("#resto");
-let listado = document.querySelector("#listado");
+let listado = document.querySelector(".listado");
 //Defino variables para los botones:
 const btnEnviar = document.querySelector("#btnEnviar");
 const btnCalcular = document.querySelector("#btnCalcular");
 const btnReiniciar = document.querySelector("#btnReset");
 
 //Agrego una función específica a cada botón
-btnReset.addEventListener( "click", function(e) {
-    e.preventDefault ();
-    vaciarFormulario ();
-})
 btnEnviar.addEventListener("click", function(e) {
     e.preventDefault ();
     ingresarDatos ();
@@ -35,9 +31,9 @@ function ingresarDatos() {
         resto.style.display = "inline-block";
         cantObrasInput.style.display = "none";
 
-        let infoCantidad = document.querySelector("#infoCantidad");
-        if (infoCantidad) {
-            infoCantidad.textContent = `Cantidad de obras a exponer: ${cantidadTotal}`;
+        let fieldCant = document.querySelector("#fieldCant");
+        if (fieldCant) {
+            fieldCant.textContent = `Cantidad de obras a exponer: ${cantidadTotal}`;
         }
         btnEnviar.textContent = "Agregar obra";
         vaciarFormulario();
@@ -82,11 +78,11 @@ function ingresarDatos() {
     alert (`Obra ${contadorObras} de ${cantidadTotal} ingresada correctamente`);
 
     vaciarFormulario();
-    //Si ya completó todas las obras
+    //Si ya completó todas las obras muestro lo demás
     if (contadorObras>=cantidadTotal) {
         btnEnviar.disabled = true;
         btnCalcular.style.display = "inline-block";
-        btnReset.style.display = "inline-block"
+        btnReiniciar.style.display = "inline-block"
         resto.disabled = true;
     }
 }
@@ -104,30 +100,30 @@ btnCalcular.addEventListener("click", function(e) {
 })
 btnReiniciar.addEventListener("click", function(e) {
     e.preventDefault();
-    Reiniciar();
+    reiniciar ();
     //funcion para volver como al principio, no para vaciar solamente
-    /*
+    
     function reiniciar() {}
-    vaciaría las variables
+    //vaciaría las variables
     obras = []
     cantidadTotal = 0;
     contadorObras = 0;
     
-    btnEnviar.disabld = false;
+    btnEnviar.disabled = false;
     btnEnviar.textContent = "Ingresar Cantidad";
 
     btnCalcular.style.display = "none";
     btnReiniciar.style.display = "none";
 
-    letcantObrasInput = document.querySelector("#cantObras");
+    let cantObrasInput = document.querySelector("#cantObras");
     cantObrasInput.style.display = "block";
     //hacer lo contrario al incio de funcion ingresarDatos
     resto.style.display = "none";
-    document.querySelector("#infoCantidad").textContent = "";
+    document.querySelector("#fieldCant").textContent = "";
     listado.innerHTML = "";
 
     vaciarFormulario();
-    */
+    
 })
 
 function calcularResultado(){
@@ -143,7 +139,7 @@ function calcularResultado(){
         consumoTotalDiario += consumoDiarioObra;
 
         if (obra.horas > obraMasHoras) {
-            obramMasHoras = obra;
+            obraMasHoras = obra;
         }
     }
     const promedioConsumo = consumoTotalDiario / obras.length;
@@ -152,5 +148,14 @@ function calcularResultado(){
     const costoDiarioMasHoras = obraMasHoras.cantLuz * obraMasHoras.consumo * obraMasHoras.horas * obraMasHoras.costo;
 
     listado.innerHTML = `
-    <h2>Resultados de las obras</h2>`
+    <h2>Resultados de las obras</h2>
+    <p><strong>Consumo diario total:</strong> ${consumoTotalDiario} kWh</p>
+    <p><strong>Consumo diario promedio por obra:</strong> ${promedioConsumo} kWh</p>
+        
+    <h3>Obra con mayor tiempo de funcionamiento:</h3>
+    <p><strong>${obraMasHoras.nombre}</strong></p>
+    <p>Horas diarias: ${obraMasHoras.horas} hs</p>
+    <p>Costo diario: $${costoDiarioMasHoras}</p>
+        
+    <p><strong>Porcentaje de obras que usan más de 20 luces:</strong> ${porcentajeMas20}%</p>`
 }
