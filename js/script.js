@@ -1,5 +1,5 @@
 //Declaro variables bases
-let obras = [];
+let obras = []; //Vacío, el usuario completa la cantidad
 let cantidadTotal = 0;
 let contadorObras = 0;
 let resto = document.querySelector("#resto");
@@ -24,7 +24,7 @@ btnEnviar.addEventListener("click", function(e) {
 function ingresarDatos() {
     if (cantidadTotal === 0) {
         let cantObrasInput = document.querySelector("#cantObras");
-        let cant = cantObrasInput.ariaValueMax;
+        let cant = cantObrasInput.value;
         if (cant=="" || isNaN(cant) || cant<=0) {
             alert("Ingrese una cantidad de obras válida");
             return;
@@ -55,7 +55,7 @@ function ingresarDatos() {
         return false;
     }
     let horas = document.querySelector("#horas").value;
-    if(horas == "" || isNaN(horas) || horas<=0) {
+    if(horas == "" || isNaN(horas) || horas<=0 || horas>24) {
         alert("Ingrese una cantidad de horas válida");
         return false;
     }
@@ -104,23 +104,53 @@ btnCalcular.addEventListener("click", function(e) {
 })
 btnReiniciar.addEventListener("click", function(e) {
     e.preventDefault();
+    Reiniciar();
+    //funcion para volver como al principio, no para vaciar solamente
+    /*
+    function reiniciar() {}
+    vaciaría las variables
+    obras = []
+    cantidadTotal = 0;
+    contadorObras = 0;
+    
+    btnEnviar.disabld = false;
+    btnEnviar.textContent = "Ingresar Cantidad";
+
+    btnCalcular.style.display = "none";
+    btnReiniciar.style.display = "none";
+
+    letcantObrasInput = document.querySelector("#cantObras");
+    cantObrasInput.style.display = "block";
+    //hacer lo contrario al incio de funcion ingresarDatos
+    resto.style.display = "none";
+    document.querySelector("#infoCantidad").textContent = "";
+    listado.innerHTML = "";
+
     vaciarFormulario();
+    */
 })
 
 function calcularResultado(){
-    let consumoTotal = 0;
-    let consumoPromedio = 0;
+    let consumoTotalDiario = 0;
+    let obraMasHoras = [0];
+    let obrasMas20Luces = 0;
 
     for(let i = 0; i <obras.length; i++) {
         let obra = obras[i];
 
-    //Calculo obra que mas tiempo estuvo:
-    if(obras.length === 0) return;
-    let obraMasTiempo = obras[0];
-    //Suponemos que la primera es la que estuvo mas tiempo
-    for(let i= 0; i <obras.length; i++)
-        let obra = obras[i];
+        let consumoDiarioObra = obra.cantLuz * obra.consumo * obra.horas;
 
-    
+        consumoTotalDiario += consumoDiarioObra;
+
+        if (obra.horas > obraMasHoras) {
+            obramMasHoras = obra;
+        }
     }
+    const promedioConsumo = consumoTotalDiario / obras.length;
+    const porcentajeMas20 = Math.round((obrasMas20Luces / obras.length)*100);
+
+    const costoDiarioMasHoras = obraMasHoras.cantLuz * obraMasHoras.consumo * obraMasHoras.horas * obraMasHoras.costo;
+
+    listado.innerHTML = `
+    <h2>Resultados de las obras</h2>`
 }
