@@ -29,6 +29,7 @@ function ingresarDatos() {
         cantidadTotal = +cant;
 
         resto.style.display = "inline-block";
+        resto.disabled = false;
         cantObrasInput.style.display = "none";
 
         let fieldCant = document.querySelector("#fieldCant");
@@ -102,33 +103,36 @@ btnReiniciar.addEventListener("click", function(e) {
     e.preventDefault();
     reiniciar ();
     //funcion para volver como al principio, no para vaciar solamente
-    
-    function reiniciar() {}
+})    
+    function reiniciar() {
     //vaciaría las variables
     obras = []
     cantidadTotal = 0;
     contadorObras = 0;
     
     btnEnviar.disabled = false;
-    btnEnviar.innerText = "Ingresar Cantidad";
+    btnEnviar.innerText = "Enviar";
 
     btnCalcular.style.display = "none";
     btnReiniciar.style.display = "none";
 
     let cantObrasInput = document.querySelector("#cantObras");
-    cantObrasInput.style.display = "block";
-    //hacer lo contrario al incio de funcion ingresarDatos
+    cantObrasInput.style.display = "inline-block";
+    cantObrasInput.value = "";
+    
+    let label = document.querySelector("#fieldCant label");
+    label.innerHTML = "Cantidad de obras a exponer:";
+
     resto.style.display = "none";
-    document.querySelector("#fieldCant").innerText = "";
-    listado.innerHTML = "";
+    
+    document.querySelector(".listado").innerHTML = "";
 
     vaciarFormulario();
-    
-})
-
+}
 function calcularResultado(){
+
     let consumoTotalDiario = 0;
-    let obraMasHoras = [];
+    let obraMasHoras = obras[0];
     let obrasMas20Luces = 0;
 
     for(let i = 0; i <obras.length; i++) {
@@ -138,9 +142,13 @@ function calcularResultado(){
 
         consumoTotalDiario += consumoDiarioObra;
 
-        if (obra.horas > obraMasHoras) {
+        if (obra.horas > obraMasHoras.horas) {
             obraMasHoras = obra;
         }
+        if (obra.cantLuz > 20) {
+            obrasMas20Luces++;
+        }
+   
     }
     const promedioConsumo = consumoTotalDiario / obras.length;
     const porcentajeMas20 = Math.round((obrasMas20Luces / obras.length)*100);
