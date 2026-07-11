@@ -53,9 +53,34 @@ aside {
 #main2 {
     display: flex;
     flex-direction: row;
+    align-items: stretch;
+}
+#main2 div:first-child {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
+#main2 div:last-child {
+    width:40%;
 }
 .campos {
-    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+form label {
+    display: block;
+    margin-top: 0.5rem;
+}
+form input {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border: 0.5rem #004675;
+}
+.listado {
+    padding-left: 0;
+    margin: 1rem 0 0 0;
 }
 #galeria {
     display:flex;

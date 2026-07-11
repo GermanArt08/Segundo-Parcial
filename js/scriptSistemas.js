@@ -28,10 +28,11 @@ function ingresarDatos() {
 
         cantidadTotal = +cant;
 
-        resto.style.display = "inline-block";
+        resto.style.display = "block";
         resto.disabled = false;
         cantObrasInput.style.display = "none";
-
+        document.querySelector("#pedido").style.display = "none";
+        
         let fieldCant = document.querySelector("#fieldCant");
         if (fieldCant) {
             fieldCant.querySelector ("label").innerText = `Cantidad de obras a exponer: ${cantidadTotal}`;
@@ -119,7 +120,9 @@ btnReiniciar.addEventListener("click", function(e) {
     let cantObrasInput = document.querySelector("#cantObras");
     cantObrasInput.style.display = "inline-block";
     cantObrasInput.value = "";
-    
+
+    document.querySelector("#pedido").style.display = "block";
+
     let label = document.querySelector("#fieldCant label");
     label.innerHTML = "Cantidad de obras a exponer:";
 
