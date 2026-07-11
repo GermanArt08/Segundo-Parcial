@@ -1,3 +1,4 @@
+//Array cuyas posiciones son distintos objetos, siendo cada uno de ellos una obra con sus respectivas propiedades.
 let obras = [
     {
         titulo:'Pulse Room',
@@ -25,8 +26,9 @@ let obras = [
         img:'img/Last Breath, 2012.jpg',
     },
 ]
+//Capturo el elemento galería
 let galeria = document.querySelector('#galeria');
-
+//Recorre el array obras creando una tarjeta HTML por cada elemento y la agrega a la galería.
 for (let i = 0; i < obras.length; i++) {
 	let tarjeta = `
         <div>
@@ -38,12 +40,15 @@ for (let i = 0; i < obras.length; i++) {
         `;
 	galeria.innerHTML += tarjeta;
 }
+//Selecciono el botón #btnEstilos y le asigno un evento click que evita que se recargue la página y ejecuta la función cambiarEstilos
 let btnEstilos = document.querySelector("#btnEstilos");
 btnEstilos.addEventListener("click", function(e) {
     e.preventDefault ();
     cambiarEstilos ();
 });
+//Función que cambia
 function cambiarEstilos () {
+    //Cambia fondo general, fija la imagen y ajusta color base + fondo de #main3
     document.body.style.backgroundImage = "url('img/fondo-alter1.png')";
     document.body.style.backgroundAttachment = "fixed";
     document.body.style.color = "#000000";

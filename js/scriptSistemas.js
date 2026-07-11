@@ -16,7 +16,6 @@ btnEnviar.addEventListener("click", function(e) {
 });
 
 //Declaro qué hace la función ingresarDatos
-
 function ingresarDatos() {
     if (cantidadTotal === 0) {
         let cantObrasInput = document.querySelector("#cantObras");
@@ -25,14 +24,13 @@ function ingresarDatos() {
             alert("Ingrese una cantidad de obras válida");
             return;
         }
-
         cantidadTotal = +cant;
 
         resto.style.display = "block";
         resto.disabled = false;
         cantObrasInput.style.display = "none";
         document.querySelector("#pedido").style.display = "none";
-        
+
         let fieldCant = document.querySelector("#fieldCant");
         if (fieldCant) {
             fieldCant.querySelector ("label").innerText = `Cantidad de obras a exponer: ${cantidadTotal}`;
@@ -127,13 +125,10 @@ btnReiniciar.addEventListener("click", function(e) {
     label.innerHTML = "Cantidad de obras a exponer:";
 
     resto.style.display = "none";
-    
     document.querySelector(".listado").innerHTML = "";
-
     vaciarFormulario();
 }
 function calcularResultado(){
-
     let consumoTotalDiario = 0;
     let obraMasHoras = obras[0];
     let obrasMas20Luces = 0;
@@ -142,7 +137,6 @@ function calcularResultado(){
         let obra = obras[i];
 
         let consumoDiarioObra = obra.cantLuz * obra.consumo * obra.horas;
-
         consumoTotalDiario += consumoDiarioObra;
 
         if (obra.horas > obraMasHoras.horas) {
@@ -151,7 +145,6 @@ function calcularResultado(){
         if (obra.cantLuz > 20) {
             obrasMas20Luces++;
         }
-   
     }
     const promedioConsumo = consumoTotalDiario / obras.length;
     const porcentajeMas20 = Math.round((obrasMas20Luces / obras.length)*100);
