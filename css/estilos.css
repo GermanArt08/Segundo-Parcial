@@ -47,7 +47,7 @@ aside {
     padding: 0.5rem;
     background-color: aliceblue;
     text-align: center;
-    border: 0.15rem solid #004675;
+    border: 0.15rem #004675;
     width: 33%;
 }
 #main2 {
@@ -56,6 +56,18 @@ aside {
 }
 .campos {
     margin: 0.5rem;
+}
+#galeria {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#galeria div {
+    text-align: center;
+    font-family: 'Barlow', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bolder;
+    color:#004675;
 }
 /*Header y Footer*/
 header, footer {
