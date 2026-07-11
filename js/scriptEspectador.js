@@ -46,4 +46,49 @@ btnEstilos.addEventListener("click", function(e) {
 function cambiarEstilos () {
     document.body.style.backgroundImage = "url('img/fondo-alter1.png')";
     document.body.style.backgroundAttachment = "fixed";
-} 
+    document.body.style.color = "#000000";
+    document.querySelector("#main3").style.backgroundColor = "black";
+
+    //Declaración de uso de IA: se utilizó chatGPT para hacer el siguiente cambio de color:
+    let titulos = document.querySelectorAll("h1, h2");
+    for (let i = 0; i < titulos.length; i++) {
+        titulos[i].style.color = "#ffffff";
+    }
+
+    let subtitulos = document.querySelectorAll("h3, h4");
+    for (let i = 0; i < subtitulos.length; i++) {
+        subtitulos[i].style.backgroundColor = "#1a1a1a";
+        subtitulos[i].style.color = "#ffd966";
+        subtitulos[i].style.borderColor = "#ffb300";
+    }
+
+    let parrafos = document.querySelectorAll("p");
+    for (let i = 0; i < parrafos.length; i++) {
+        parrafos[i].style.color = "#e0e0e0";
+    }
+
+    let spans = document.querySelectorAll("span");
+    for (let i = 0; i < spans.length; i++) {
+        spans[i].style.color = "#ffcc66";
+    }
+
+    let asides = document.querySelectorAll("aside");
+    for (let i = 0; i < asides.length; i++) {
+        asides[i].style.backgroundColor = "#141414";
+        asides[i].style.color = "#dddddd";
+    }
+
+    let links = document.querySelectorAll("a");
+    for (let i = 0; i < links.length; i++) {
+        links[i].style.color = "#ffcc66";
+    }
+
+    let header = document.querySelector("header");
+    let footer = document.querySelector("footer");
+
+    header.style.backgroundColor = "#000000";
+    header.style.color = "#ffffff";
+
+    footer.style.backgroundColor = "#000000";
+    footer.style.color = "#ffffff";
+}
