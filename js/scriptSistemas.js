@@ -17,20 +17,23 @@ btnEnviar.addEventListener("click", function(e) {
 
 //Declaro qué hace la función ingresarDatos
 function ingresarDatos() {
+    //Si la cantidad total de obras es 0, significa que el usuario aún no ingresó la cantidad de obras a exponer
     if (cantidadTotal === 0) {
         let cantObrasInput = document.querySelector("#cantObras");
         let cant = cantObrasInput.value;
+        //Valido que la cantidad ingresada sea un número mayor a 0
         if (cant=="" || isNaN(cant) || cant<=0) {
             alert("Ingrese una cantidad de obras válida");
             return;
         }
+        //Si la cantidad es válida, la guardo en la variable cantidadTotal y muestro el resto del formulario
         cantidadTotal = +cant;
 
         resto.style.display = "block";
         resto.disabled = false;
         cantObrasInput.style.display = "none";
         document.querySelector("#pedido").style.display = "none";
-
+        //Actualizo el label del campo de cantidad de obras a exponer
         let fieldCant = document.querySelector("#fieldCant");
         if (fieldCant) {
             fieldCant.querySelector ("label").innerText = `Cantidad de obras a exponer: ${cantidadTotal}`;
@@ -39,7 +42,7 @@ function ingresarDatos() {
         vaciarFormulario();
         return;
     }
-    //Se toman los resultados del form como variables se validan
+    //Se toman los resultados del form como variables y se validan
     let nombre = document.querySelector("#nombre").value;
     if (nombre == "") {
         alert("El nombre no puede estar vacío");
@@ -65,7 +68,7 @@ function ingresarDatos() {
         alert("Ingrese un costo válido");
         return false;
     }
-
+    //Si todo está correcto, creo un objeto obra y lo agrego al array de obras
     const obra = {
         nombre: nombre,
         cantLuz: Number(cantLuz),
@@ -76,7 +79,7 @@ function ingresarDatos() {
     obras.push(obra);
     contadorObras++;
     alert (`Obra ${contadorObras} de ${cantidadTotal} ingresada correctamente`);
-
+    //Muestro la obra ingresada en el listado
     vaciarFormulario();
     //Si ya completó todas las obras muestro lo demás
     if (contadorObras>=cantidadTotal) {
@@ -87,6 +90,7 @@ function ingresarDatos() {
     }
 };
 function vaciarFormulario(){
+    //Vacio los campos del formulario
     document.querySelector ("#cantObras").value = "";
     document.querySelector ("#nombre").value = "";
     document.querySelector ("#cantLuz").value = "";
@@ -94,6 +98,7 @@ function vaciarFormulario(){
     document.querySelector ("#consumo").value = "";
     document.querySelector ("#costo").value = "";
 }
+//Agrego la función de calcular resultado y reiniciar
 btnCalcular.addEventListener("click", function(e) {
     e.preventDefault();
     calcularResultado();
@@ -101,10 +106,10 @@ btnCalcular.addEventListener("click", function(e) {
 btnReiniciar.addEventListener("click", function(e) {
     e.preventDefault();
     reiniciar ();
-    //funcion para volver como al principio, no para vaciar solamente
+    //funcion para volver como al principio
 })    
     function reiniciar() {
-    //vaciaría las variables
+    //vacio las variables
     obras = []
     cantidadTotal = 0;
     contadorObras = 0;
@@ -127,30 +132,34 @@ btnReiniciar.addEventListener("click", function(e) {
     resto.style.display = "none";
     document.querySelector(".listado").innerHTML = "";
     vaciarFormulario();
+    //se muestra todo como estaba al principio
 }
 function calcularResultado(){
+    //Declaro variables para los cálculos
     let consumoTotalDiario = 0;
     let obraMasHoras = obras[0];
     let obrasMas20Luces = 0;
-
+    //Recorro el array de obras para calcular los resultados
     for(let i = 0; i <obras.length; i++) {
         let obra = obras[i];
-
+        //Calculo el consumo diario de cada obra y lo sumo al total
         let consumoDiarioObra = obra.cantLuz * obra.consumo * obra.horas;
         consumoTotalDiario += consumoDiarioObra;
-
+        //Busco la obra con mayor tiempo de funcionamiento
         if (obra.horas > obraMasHoras.horas) {
             obraMasHoras = obra;
         }
+        //Cuento cuántas obras tienen más de 20 luces
         if (obra.cantLuz > 20) {
             obrasMas20Luces++;
         }
     }
+    //Calculo el promedio de consumo diario por obra y el porcentaje de obras con más de 20 luces
     const promedioConsumo = consumoTotalDiario / obras.length;
     const porcentajeMas20 = Math.round((obrasMas20Luces / obras.length)*100);
-
+    //Calculo el costo diario de la obra con mayor tiempo de funcionamiento
     const costoDiarioMasHoras = obraMasHoras.cantLuz * obraMasHoras.consumo * obraMasHoras.horas * obraMasHoras.costo;
-
+    //Muestro los resultados en el HTML
     listado.innerHTML = `
     <h2>Resultados de las obras</h2>
     <p><strong>Consumo diario total:</strong> ${consumoTotalDiario} kWh</p>
